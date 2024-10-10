@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: depl-app
+  name: depl-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: depl-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: depl-app
+    spec:
+      containers:
+      - image: mahmoudkhairi/app
+        name: app
+        ports:
+        - containerPort: 8000
+        resources: {}
+status: {}
