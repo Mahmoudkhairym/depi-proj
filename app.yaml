@@ -22,5 +22,16 @@ spec:
         name: app
         ports:
         - containerPort: 8000
-        resources: {}
-status: {}
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-k8s-service
+spec:
+  type: NodePort
+  ports:
+  - port: 8000
+    targetPort: 8000
+    nodePort: 8000  # You can specify a port or let Kubernetes choose one
+  selector:
+    app: depl-app
