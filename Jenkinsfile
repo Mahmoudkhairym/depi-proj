@@ -10,7 +10,7 @@ pipeline {
         }
         stage('build'){
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerid', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerid2', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     // Run Maven on a Unix agent.
                     sh 'docker build -t ${USER}/app -f Dockerfile .'
                     sh 'docker login -u ${USER} -p ${PASS}'
@@ -20,7 +20,7 @@ pipeline {
         }
         stage ('prod'){
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerid', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerid2', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     // sh 'docker rm -f contapp'
                     sh 'docker run -d -p 8000:8000 --name contapp ${USER}/app'
                 }
