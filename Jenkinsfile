@@ -21,7 +21,7 @@ pipeline {
         stage ('prod'){
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerid2', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
-                    // sh 'docker rm -f contapp'
+                    sh 'docker rm -f contapp'
                     sh 'docker run -d -p 8000:8000 --name contapp ${USER}/app'
                 }
             }
